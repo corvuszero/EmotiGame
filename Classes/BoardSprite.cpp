@@ -44,10 +44,16 @@ BoardSprite* BoardSprite::create() {
 
 void BoardSprite::initOptions() {
   int totalSize = this->sizeX * this->sizeY;
+  int middle =  totalSize / 2;
 
   this->board = Vector<TileSprite*>(totalSize);
   for (int i = 0; i < totalSize; i++) {
-    auto tile = TileSprite::create();
+    TileSprite* tile;
+    if (i != middle) {
+      tile = TileSprite::create(TileClass::PLAYER);
+    } else {
+      tile = TileSprite::create(TileClass::GOAL);
+    }
     
     float row = i / this->sizeX;
     float column = i % this->sizeX;

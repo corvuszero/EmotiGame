@@ -23,9 +23,10 @@ public:
   static const int BOARD_WIDTH = 11;
   static const int BOARD_HEIGHT = 5;
   
+  ~BoardSprite();
   BoardSprite();
   BoardSprite(int sizeX, int sizeY);
-  ~BoardSprite();
+
   static BoardSprite* create();
   static BoardSprite* create(int sizeX, int sizeY);
   

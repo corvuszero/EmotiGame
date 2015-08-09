@@ -11,23 +11,26 @@
 
 USING_NS_CC;
 
-TileSprite::TileSprite() : TileSprite("💩") {
+const std::string TileSprite::DEFAULT_EMOJI = "💩";
+const std::string TileSprite::GOAL_EMOJI = "💎";
+
+TileSprite::TileSprite() : TileSprite(TileClass::PLAYER) {
 }
 
 TileSprite::~TileSprite() {
 }
 
-TileSprite::TileSprite(std::string symbol) {
+TileSprite::TileSprite(TileClass tileClass) {
   this->emoji = nullptr;
-  this->symbol = symbol;
+  this->symbol = TileSprite::getSymbolForClass(tileClass);
 }
 
 TileSprite* TileSprite::create() {
-  return TileSprite::create("💩");
+  return TileSprite::create(TileClass::PLAYER);
 }
 
-TileSprite* TileSprite::create(std::string symbol) {
-  TileSprite *pSprite = new TileSprite(symbol);
+TileSprite* TileSprite::create(TileClass tileClass) {
+  TileSprite *pSprite = new TileSprite(tileClass);
   
   if (pSprite->init()) {
     pSprite->autorelease();
@@ -39,6 +42,26 @@ TileSprite* TileSprite::create(std::string symbol) {
   CC_SAFE_DELETE(pSprite);
   
   return NULL;
+}
+
+Vec2 TileSprite::getBoardPosition() {
+  return this->boardPosition;
+}
+
+const Size& TileSprite::getContentSize() {
+  return this->emoji->getContentSize();
+}
+
+std::string TileSprite::getSymbolForClass(TileClass tileClass) {
+  switch (tileClass) {
+    case TileClass::GOAL:
+      return TileSprite::GOAL_EMOJI;
+      break;
+      
+    default:
+      return TileSprite::DEFAULT_EMOJI;
+      break;
+  }
 }
 
 void TileSprite::initOptions() {
@@ -57,18 +80,7 @@ void TileSprite::setBoardPosition(float row, float column) {
     this->emoji->getContentSize().height * row
   ));
   
-  this->boardPosition = Vec2(
-    column,
-    row
-  );
-}
-
-Vec2 TileSprite::getBoardPosition() {
-  return this->boardPosition;
-}
-
-const Size& TileSprite::getContentSize() {
-  return this->emoji->getContentSize();
+  this->boardPosition = Vec2(column, row);
 }
 
 // private
