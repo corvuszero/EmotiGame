@@ -53,18 +53,13 @@ void BoardSprite::initOptions() {
     float column = i % this->sizeX;
     tile->setBoardPosition(row, column);
     
-    this->board.insert(i, tile);
+    this->board.pushBack(tile);
     this->addChild(tile);
   }
   
   TileSprite* sampleBoard = this->board.front();
-  // DOESN'T WORK FOR NOW. FIGURE OUT WHY sampleBoard is uninitialized
-  // TileSprite
-  this->setContentSize(Size(sampleBoard->getContentSize().width * this->sizeX,
-                            sampleBoard->getContentSize().height * this->sizeY
-                      ));
-  
-  this->setAnchorPoint(Vec2(this->getContentSize().width / 2,
-                            this->getContentSize().height / 2
-                      ));
+  this->setContentSize(Size(
+    sampleBoard->getContentSize().width * this->sizeX,
+    sampleBoard->getContentSize().height * this->sizeY
+  ));
 }

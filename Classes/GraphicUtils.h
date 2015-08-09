@@ -13,6 +13,8 @@
 
 class GraphicUtils {
 public:
+  static const cocos2d::Vec2 ALIGN_BOTTOM_LEFT;
+
   static cocos2d::Vec2 screenCenter();
 };
 

@@ -24,13 +24,16 @@ public:
   TileSprite();
   TileSprite(std::string symbol);
   ~TileSprite();
-  static TileSprite* create();
-  static TileSprite* create(std::string symbol);
   
   
   void setSymbol(std::string emoji);
   void setBoardPosition(float row, float column);
   cocos2d::Vec2 getBoardPosition();
+  const cocos2d::Size& getContentSize();
+
+  static TileSprite* create();
+  static TileSprite* create(std::string symbol);
+
 };
 
 #endif /* defined(__GoobGame__TileSprite__) */

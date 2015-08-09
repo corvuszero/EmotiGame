@@ -10,6 +10,8 @@
 
 USING_NS_CC;
 
+const Vec2 GraphicUtils::ALIGN_BOTTOM_LEFT = Vec2(0, 0);
+
 Vec2 GraphicUtils::screenCenter() {
   Size visibleSize = Director::getInstance()->getVisibleSize();
 

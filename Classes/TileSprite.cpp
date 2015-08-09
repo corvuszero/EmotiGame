@@ -6,6 +6,7 @@
 //
 //
 
+#include "GraphicUtils.h"
 #include "TileSprite.h"
 
 USING_NS_CC;
@@ -52,10 +53,9 @@ void TileSprite::setSymbol(std::string emoji) {
 
 void TileSprite::setBoardPosition(float row, float column) {
   this->setPosition(Vec2(
-                         this->emoji->getContentSize().width * column,
-                         this->emoji->getContentSize().height * row
-                         )
-  );
+    this->emoji->getContentSize().width * column,
+    this->emoji->getContentSize().height * row
+  ));
   
   this->boardPosition = Vec2(
     column,
@@ -67,10 +67,15 @@ Vec2 TileSprite::getBoardPosition() {
   return this->boardPosition;
 }
 
+const Size& TileSprite::getContentSize() {
+  return this->emoji->getContentSize();
+}
+
 // private
 void TileSprite::updateLabel() {
   if (this->emoji == nullptr) {
     this->emoji = Label::createWithSystemFont(this->symbol, "Arial", 70);
+    this->emoji->setAnchorPoint(GraphicUtils::ALIGN_BOTTOM_LEFT);
   }
   
   this->emoji->setString(this->symbol);
