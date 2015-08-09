@@ -15,6 +15,7 @@ class TileSprite : public cocos2d::Sprite {
 private:
   std::string symbol;
   cocos2d::Label* emoji;
+  cocos2d::Vec2 boardPosition;
   
   void updateLabel();
   void initOptions();
@@ -29,6 +30,7 @@ public:
   
   void setSymbol(std::string emoji);
   void setBoardPosition(float row, float column);
+  cocos2d::Vec2 getBoardPosition();
 };
 
 #endif /* defined(__GoobGame__TileSprite__) */

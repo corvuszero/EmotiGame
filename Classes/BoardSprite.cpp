@@ -17,7 +17,7 @@ BoardSprite::BoardSprite(int sizeX, int sizeY) {
   this->sizeY = (sizeY % 2 == 0)? sizeY + 1 : sizeY;
 }
 
-BoardSprite::BoardSprite() : BoardSprite(7, 15) {
+BoardSprite::BoardSprite() : BoardSprite(BOARD_WIDTH, BOARD_HEIGHT) {
 }
 
 BoardSprite::~BoardSprite() {
@@ -39,7 +39,7 @@ BoardSprite* BoardSprite::create(int sizeX, int sizeY) {
 }
 
 BoardSprite* BoardSprite::create() {
-  return BoardSprite::create(13, 5);
+  return BoardSprite::create(BOARD_WIDTH, BOARD_HEIGHT);
 }
 
 void BoardSprite::initOptions() {
@@ -57,6 +57,14 @@ void BoardSprite::initOptions() {
     this->addChild(tile);
   }
   
-  this->setAnchorPoint(Vec2(
-                       ));
+  TileSprite* sampleBoard = this->board.front();
+  // DOESN'T WORK FOR NOW. FIGURE OUT WHY sampleBoard is uninitialized
+  // TileSprite
+  this->setContentSize(Size(sampleBoard->getContentSize().width * this->sizeX,
+                            sampleBoard->getContentSize().height * this->sizeY
+                      ));
+  
+  this->setAnchorPoint(Vec2(this->getContentSize().width / 2,
+                            this->getContentSize().height / 2
+                      ));
 }

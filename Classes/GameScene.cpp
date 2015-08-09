@@ -6,9 +6,9 @@
 //
 //
 
-#include "GameScene.h"
-#include "TileSprite.h"
 #include "BoardSprite.h"
+#include "GameScene.h"
+#include "GraphicUtils.h"
 
 USING_NS_CC;
 
@@ -25,17 +25,8 @@ bool GameScene::init() {
     return false;
   }
 
-  Size visibleSize = Director::getInstance()->getVisibleSize();
-  
-  /*
-  auto heart = TileSprite::create("❤️");
-  heart->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-  this->addChild(heart);
-  CCLOG("Agregamos corazon!");
-  */
-  
   auto board = BoardSprite::create();
-  board->setPosition(Vec2(40, 40));
+  board->setPosition(GraphicUtils::screenCenter());
   this->addChild(board);
   
   return true;

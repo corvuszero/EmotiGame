@@ -55,7 +55,16 @@ void TileSprite::setBoardPosition(float row, float column) {
                          this->emoji->getContentSize().width * column,
                          this->emoji->getContentSize().height * row
                          )
-                    );
+  );
+  
+  this->boardPosition = Vec2(
+    column,
+    row
+  );
+}
+
+Vec2 TileSprite::getBoardPosition() {
+  return this->boardPosition;
 }
 
 // private

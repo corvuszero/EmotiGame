@@ -20,6 +20,9 @@ private:
   cocos2d::Vector<TileSprite*> board;
   
 public:
+  static const int BOARD_WIDTH = 11;
+  static const int BOARD_HEIGHT = 5;
+  
   BoardSprite();
   BoardSprite(int sizeX, int sizeY);
   ~BoardSprite();

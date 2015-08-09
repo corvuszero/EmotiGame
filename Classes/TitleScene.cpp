@@ -6,8 +6,9 @@
 //
 //
 
-#include "TitleScene.h"
 #include "GameScene.h"
+#include "GraphicUtils.h"
+#include "TitleScene.h"
 
 USING_NS_CC;
 
@@ -28,7 +29,7 @@ bool TitleScene::init() {
   
   // Title and Disclaimer
   auto title = Label::createWithTTF("Goob Game", "fonts/PrintChar21.ttf", 70);
-  title->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+  title->setPosition(GraphicUtils::screenCenter());
   this->addChild(title, 0);
   
   auto demoLabel = Label::createWithTTF("Demo", "fonts/PrintChar21.ttf", 35);
