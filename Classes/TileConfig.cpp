@@ -11,33 +11,38 @@
 USING_NS_CC;
 
 const std::string TileConfig::SYMBOL_DEFAULT = "🔒";
-const std::string TileConfig::SYMBOL_GOAL = "💎";
+const std::string TileConfig::SYMBOL_GOAL = "💰";
 const std::string TileConfig::SYMBOL_PLAYER = "😊";
 
-const std::string TileConfig::STATE_COVERED = "covered";
-const std::string TileConfig::STATE_NEUTRAL = "neutral";
-const std::string TileConfig::STATE_UNCOVERED = "uncovered";
-
-TileConfig::TileConfig(std::string symbol, std::string intialState) {
-  this->symbol = symbol;
-  this->initialState = initialState;
-  this->state = this->initialState;
+TileConfig::TileConfig(TileClass tileClass, TileState state) {
+  this->tileClass = tileClass;
+  this->state = state;
 }
 
 TileConfig::~TileConfig() {}
 
-TileConfig* TileConfig::create(std::string symbol) {
-  if (symbol == TileConfig::SYMBOL_GOAL) {
-    return new TileConfig(TileConfig::SYMBOL_GOAL, TileConfig::STATE_COVERED);
-  }
+TileConfig* TileConfig::create(TileClass tileClass) {
+  switch (tileClass) {
+    case TileClass::PRIZE:
+      return new TileConfig(tileClass, TileState::COVERED);
       
-  if (symbol == TileConfig::SYMBOL_PLAYER) {
-    return new TileConfig(TileConfig::SYMBOL_PLAYER, TileConfig::STATE_NEUTRAL);
-  }
+    case TileClass::PLAYER:
+      return new TileConfig(tileClass, TileState::NEUTRAL);
       
-  return new TileConfig(TileConfig::SYMBOL_DEFAULT, TileConfig::STATE_COVERED);
+    default:
+      return new TileConfig(tileClass, TileState::COVERED);
+  }
 }
 
 std::string TileConfig::getSymbol() {
-  return this->symbol;
+  switch (this->tileClass) {
+    case TileClass::PRIZE:
+      return TileConfig::SYMBOL_GOAL;
+      
+    case TileClass::PLAYER:
+      return TileConfig::SYMBOL_PLAYER;
+      
+    default:
+      return TileConfig::SYMBOL_DEFAULT;
+  }
 }

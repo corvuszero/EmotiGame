@@ -10,8 +10,7 @@
 #define __GoobGame__TileSprite__
 
 #include "cocos2d.h"
-
-class TileConfig;
+#include "TileConfig.h"
 
 class TileSprite : public cocos2d::Sprite {
 private:
@@ -25,7 +24,7 @@ private:
 public:
   ~TileSprite();
   TileSprite();
-  TileSprite(std::string tileSymbol);
+  TileSprite(TileClass tileClass);
   
   void setSymbol(std::string emoji);
   void setBoardPosition(float row, float column);
@@ -33,7 +32,7 @@ public:
   const cocos2d::Size& getContentSize();
 
   static TileSprite* create();
-  static TileSprite* create(std::string tileSymbol);
+  static TileSprite* create(TileClass tileClass);
 
 };
 

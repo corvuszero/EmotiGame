@@ -54,15 +54,15 @@ void BoardSprite::initOptions() {
   for (int i = 0; i < totalSize; i++) {
     TileSprite* tile;
     if (i != middle) {
-      tile = TileSprite::create(TileConfig::SYMBOL_DEFAULT);
+      tile = TileSprite::create(TileClass::BOARD);
     }
     
     if (i == middle) {
-      tile = TileSprite::create(TileConfig::SYMBOL_GOAL);
+      tile = TileSprite::create(TileClass::PRIZE);
     }
     
     if (i == playerLeft || i == playerRight) {
-      tile = TileSprite::create(TileConfig::SYMBOL_PLAYER);
+      tile = TileSprite::create(TileClass::PLAYER);
     }
     
     float row = i / this->sizeX;

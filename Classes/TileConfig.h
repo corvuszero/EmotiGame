@@ -11,27 +11,34 @@
 
 #include "cocos2d.h"
 
+enum class TileClass {
+  PRIZE,
+  PLAYER,
+  BOARD,
+};
+
+enum class TileState {
+  NEUTRAL,
+  COVERED,
+  UNCOVERED
+};
+
 class TileConfig {
 private:
-  std::string initialState;
-  std::string symbol;
-  std::string state;
+  TileClass tileClass;
+  TileState state;
   
 public:
   static const std::string SYMBOL_DEFAULT;
   static const std::string SYMBOL_GOAL;
   static const std::string SYMBOL_PLAYER;
   
-  static const std::string STATE_COVERED;
-  static const std::string STATE_NEUTRAL;
-  static const std::string STATE_UNCOVERED;
-  
-  TileConfig(std::string symbol, std::string state);
+  TileConfig(TileClass tileClass, TileState state);
   ~TileConfig();
   
   std::string getSymbol();
   
-  static TileConfig* create(std::string symbol);
+  static TileConfig* create(TileClass tileClass);
 };
 
 #endif /* defined(__GoobGame__TileConfig__) */

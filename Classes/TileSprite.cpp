@@ -12,23 +12,23 @@
 
 USING_NS_CC;
 
-TileSprite::TileSprite() : TileSprite(TileConfig::SYMBOL_DEFAULT) {
+TileSprite::TileSprite() : TileSprite(TileClass::BOARD) {
 }
 
 TileSprite::~TileSprite() {
 }
 
-TileSprite::TileSprite(std::string tileSymbol) {
+TileSprite::TileSprite(TileClass tileClass) {
   this->emoji = nullptr;
-  this->config = TileConfig::create(tileSymbol);
+  this->config = TileConfig::create(tileClass);
 }
 
 TileSprite* TileSprite::create() {
-  return TileSprite::create(TileConfig::SYMBOL_DEFAULT);
+  return TileSprite::create(TileClass::BOARD);
 }
 
-TileSprite* TileSprite::create(std::string tileSymbol) {
-  TileSprite *pSprite = new TileSprite(tileSymbol);
+TileSprite* TileSprite::create(TileClass tileClass) {
+  TileSprite *pSprite = new TileSprite(tileClass);
   
   if (pSprite->init()) {
     pSprite->autorelease();
