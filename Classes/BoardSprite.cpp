@@ -7,6 +7,7 @@
 //
 
 #include "BoardSprite.h"
+#include "TileConfig.h"
 #include "TileSprite.h"
 
 USING_NS_CC;
@@ -45,14 +46,23 @@ BoardSprite* BoardSprite::create() {
 void BoardSprite::initOptions() {
   int totalSize = this->sizeX * this->sizeY;
   int middle =  totalSize / 2;
+  
+  int playerLeft = middle - (this->sizeX / 2);
+  int playerRight = middle + (this->sizeX / 2);
 
   this->board = Vector<TileSprite*>(totalSize);
   for (int i = 0; i < totalSize; i++) {
     TileSprite* tile;
     if (i != middle) {
-      tile = TileSprite::create(TileClass::PLAYER);
-    } else {
-      tile = TileSprite::create(TileClass::GOAL);
+      tile = TileSprite::create(TileConfig::SYMBOL_DEFAULT);
+    }
+    
+    if (i == middle) {
+      tile = TileSprite::create(TileConfig::SYMBOL_GOAL);
+    }
+    
+    if (i == playerLeft || i == playerRight) {
+      tile = TileSprite::create(TileConfig::SYMBOL_PLAYER);
     }
     
     float row = i / this->sizeX;

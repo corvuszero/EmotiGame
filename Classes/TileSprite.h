@@ -11,30 +11,21 @@
 
 #include "cocos2d.h"
 
-enum class TileClass {
-  BOARD,
-  GOAL,
-  PLAYER
-};
+class TileConfig;
 
 class TileSprite : public cocos2d::Sprite {
 private:
-  std::string symbol;
+  TileConfig* config;
   cocos2d::Label* emoji;
   cocos2d::Vec2 boardPosition;
-  TileClass tileClass;
   
   void updateLabel();
   void initOptions();
-  static std::string getSymbolForClass(TileClass tileClass);
-  
-public:
-  static const std::string DEFAULT_EMOJI;
-  static const std::string GOAL_EMOJI;
 
+public:
   ~TileSprite();
   TileSprite();
-  TileSprite(TileClass tileClass);
+  TileSprite(std::string tileSymbol);
   
   void setSymbol(std::string emoji);
   void setBoardPosition(float row, float column);
@@ -42,7 +33,7 @@ public:
   const cocos2d::Size& getContentSize();
 
   static TileSprite* create();
-  static TileSprite* create(TileClass tileClass);
+  static TileSprite* create(std::string tileSymbol);
 
 };
 

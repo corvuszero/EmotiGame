@@ -71,6 +71,8 @@
 		DA7F70011B77106D00534C66 /* GraphicUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA7F6FFE1B77106D00534C66 /* GraphicUtils.cpp */; };
 		DA8E0FFD1B537B9900A4F28B /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA8E0FFB1B537B9900A4F28B /* TitleScene.cpp */; };
 		DA8E0FFE1B537B9900A4F28B /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA8E0FFB1B537B9900A4F28B /* TitleScene.cpp */; };
+		DAEBC41B1B7F1840002C3905 /* TileConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAEBC4191B7F1840002C3905 /* TileConfig.cpp */; };
+		DAEBC41C1B7F1840002C3905 /* TileConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAEBC4191B7F1840002C3905 /* TileConfig.cpp */; };
 		DAEF1B511B6EDC06005EE564 /* BoardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAEF1B4F1B6EDC06005EE564 /* BoardSprite.cpp */; };
 		DAEF1B521B6EDC06005EE564 /* BoardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAEF1B4F1B6EDC06005EE564 /* BoardSprite.cpp */; };
 		DAFA133A1B58C84D0034AAC1 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAFA13381B58C84D0034AAC1 /* GameScene.cpp */; };
@@ -171,6 +173,8 @@
 		DA7F6FFF1B77106D00534C66 /* GraphicUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicUtils.h; sourceTree = "<group>"; };
 		DA8E0FFB1B537B9900A4F28B /* TitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleScene.cpp; sourceTree = "<group>"; };
 		DA8E0FFC1B537B9900A4F28B /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScene.h; sourceTree = "<group>"; };
+		DAEBC4191B7F1840002C3905 /* TileConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileConfig.cpp; sourceTree = "<group>"; };
+		DAEBC41A1B7F1840002C3905 /* TileConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileConfig.h; sourceTree = "<group>"; };
 		DAEF1B4F1B6EDC06005EE564 /* BoardSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardSprite.cpp; sourceTree = "<group>"; };
 		DAEF1B501B6EDC06005EE564 /* BoardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardSprite.h; sourceTree = "<group>"; };
 		DAFA13381B58C84D0034AAC1 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
@@ -378,6 +382,8 @@
 			children = (
 				DA7F6FFE1B77106D00534C66 /* GraphicUtils.cpp */,
 				DA7F6FFF1B77106D00534C66 /* GraphicUtils.h */,
+				DAEBC4191B7F1840002C3905 /* TileConfig.cpp */,
+				DAEBC41A1B7F1840002C3905 /* TileConfig.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA712A661B5DFA6100029DAD /* TileSprite.cpp in Sources */,
+				DAEBC41B1B7F1840002C3905 /* TileConfig.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
@@ -558,6 +565,7 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				DAEF1B521B6EDC06005EE564 /* BoardSprite.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				DAEBC41C1B7F1840002C3905 /* TileConfig.cpp in Sources */,
 				DA7F70011B77106D00534C66 /* GraphicUtils.cpp in Sources */,
 				DAFA133F1B58CFFE0034AAC1 /* GameScene.cpp in Sources */,
 				DA8E0FFE1B537B9900A4F28B /* TitleScene.cpp in Sources */,

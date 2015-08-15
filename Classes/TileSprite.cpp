@@ -7,30 +7,28 @@
 //
 
 #include "GraphicUtils.h"
+#include "TileConfig.h"
 #include "TileSprite.h"
 
 USING_NS_CC;
 
-const std::string TileSprite::DEFAULT_EMOJI = "💩";
-const std::string TileSprite::GOAL_EMOJI = "💎";
-
-TileSprite::TileSprite() : TileSprite(TileClass::PLAYER) {
+TileSprite::TileSprite() : TileSprite(TileConfig::SYMBOL_DEFAULT) {
 }
 
 TileSprite::~TileSprite() {
 }
 
-TileSprite::TileSprite(TileClass tileClass) {
+TileSprite::TileSprite(std::string tileSymbol) {
   this->emoji = nullptr;
-  this->symbol = TileSprite::getSymbolForClass(tileClass);
+  this->config = TileConfig::create(tileSymbol);
 }
 
 TileSprite* TileSprite::create() {
-  return TileSprite::create(TileClass::PLAYER);
+  return TileSprite::create(TileConfig::SYMBOL_DEFAULT);
 }
 
-TileSprite* TileSprite::create(TileClass tileClass) {
-  TileSprite *pSprite = new TileSprite(tileClass);
+TileSprite* TileSprite::create(std::string tileSymbol) {
+  TileSprite *pSprite = new TileSprite(tileSymbol);
   
   if (pSprite->init()) {
     pSprite->autorelease();
@@ -52,26 +50,9 @@ const Size& TileSprite::getContentSize() {
   return this->emoji->getContentSize();
 }
 
-std::string TileSprite::getSymbolForClass(TileClass tileClass) {
-  switch (tileClass) {
-    case TileClass::GOAL:
-      return TileSprite::GOAL_EMOJI;
-      break;
-      
-    default:
-      return TileSprite::DEFAULT_EMOJI;
-      break;
-  }
-}
-
 void TileSprite::initOptions() {
   this->updateLabel();
   this->addChild(this->emoji, 0);
-}
-
-void TileSprite::setSymbol(std::string emoji) {
-  this->symbol = emoji;
-  this->updateLabel();
 }
 
 void TileSprite::setBoardPosition(float row, float column) {
@@ -86,9 +67,10 @@ void TileSprite::setBoardPosition(float row, float column) {
 // private
 void TileSprite::updateLabel() {
   if (this->emoji == nullptr) {
-    this->emoji = Label::createWithSystemFont(this->symbol, "Arial", 70);
+    this->emoji = Label::createWithSystemFont(this->config->getSymbol(), "Arial", 70);
     this->emoji->setAnchorPoint(GraphicUtils::ALIGN_BOTTOM_LEFT);
+    return;
   }
   
-  this->emoji->setString(this->symbol);
+  this->emoji->setString(this->config->getSymbol());
 }
