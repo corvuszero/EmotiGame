@@ -21,6 +21,7 @@ TileSprite::~TileSprite() {
 TileSprite::TileSprite(TileClass tileClass) {
   this->emoji = nullptr;
   this->config = TileConfig::create(tileClass);
+  this->currentState = this->config->getState();
 }
 
 TileSprite* TileSprite::create() {
@@ -53,6 +54,8 @@ const Size& TileSprite::getContentSize() {
 void TileSprite::initOptions() {
   this->updateLabel();
   this->addChild(this->emoji, 0);
+  
+  this->calculateValue();
 }
 
 void TileSprite::setBoardPosition(float row, float column) {
@@ -65,9 +68,29 @@ void TileSprite::setBoardPosition(float row, float column) {
 }
 
 // private
+void TileSprite::calculateValue() {
+  int random = RandomHelper::random_int(1, 90);
+  
+  if (random < 30) {
+    this->value = TileValues::ROCK;
+    return;
+  }
+  
+  if (random < 60) {
+    this->value = TileValues::PAPER;
+    return;
+  }
+  
+  this->value = TileValues::SCISSORS;
+}
+
 void TileSprite::updateLabel() {
   if (this->emoji == nullptr) {
-    this->emoji = Label::createWithSystemFont(this->config->getSymbol(), "Arial", 70);
+    this->emoji = Label::createWithSystemFont(
+      this->config->getSymbol(),
+      "Arial",
+      70
+    );
     this->emoji->setAnchorPoint(GraphicUtils::ALIGN_BOTTOM_LEFT);
     return;
   }

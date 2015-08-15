@@ -46,3 +46,7 @@ std::string TileConfig::getSymbol() {
       return TileConfig::SYMBOL_DEFAULT;
   }
 }
+
+TileState TileConfig::getState() {
+  return this->state;
+}

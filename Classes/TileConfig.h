@@ -37,6 +37,7 @@ public:
   ~TileConfig();
   
   std::string getSymbol();
+  TileState getState();
   
   static TileConfig* create(TileClass tileClass);
 };

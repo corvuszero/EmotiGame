@@ -12,16 +12,27 @@
 #include "cocos2d.h"
 #include "TileConfig.h"
 
+enum class TileValues {
+  NEUTRAL,
+  ROCK,
+  PAPER,
+  SCISSORS
+};
+
 class TileSprite : public cocos2d::Sprite {
 private:
   TileConfig* config;
   cocos2d::Label* emoji;
-  cocos2d::Vec2 boardPosition;
   
+  void calculateValue();
   void updateLabel();
   void initOptions();
 
 public:
+  cocos2d::Vec2 boardPosition;
+  TileState currentState;
+  TileValues value;
+  
   ~TileSprite();
   TileSprite();
   TileSprite(TileClass tileClass);
