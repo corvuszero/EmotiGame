@@ -16,6 +16,7 @@ TileSprite::TileSprite() : TileSprite(TileClass::BOARD) {
 }
 
 TileSprite::~TileSprite() {
+  delete this->config;
 }
 
 TileSprite::TileSprite(TileClass tileClass) {
@@ -34,6 +35,7 @@ TileSprite* TileSprite::create(TileClass tileClass) {
   if (pSprite->init()) {
     pSprite->autorelease();
     pSprite->initOptions();
+    pSprite->setEvents();
     
     return pSprite;
   }
@@ -59,9 +61,12 @@ void TileSprite::initOptions() {
 }
 
 void TileSprite::setBoardPosition(float row, float column) {
+  this->row = row;
+  this->column = column;
+  
   this->setPosition(Vec2(
-    this->emoji->getContentSize().width * column,
-    this->emoji->getContentSize().height * row
+    this->emoji->getContentSize().width * this->column,
+    this->emoji->getContentSize().height * this->row
   ));
   
   this->boardPosition = Vec2(column, row);
@@ -82,6 +87,42 @@ void TileSprite::calculateValue() {
   }
   
   this->value = TileValues::SCISSORS;
+}
+
+void TileSprite::setEvents() {
+  auto listener = EventListenerTouchOneByOne::create();
+  listener->setSwallowTouches(true);
+  
+  listener->onTouchBegan = [&](Touch* touch, Event* event) {
+    Vec2 p = touch->getLocation();
+    
+    Rect emojiRect = this->emoji->getBoundingBox();
+    Rect box = this->getBoundingBox();
+    Rect* newBox = new Rect(
+                           box.origin.x,
+                           box.origin.y,
+                           emojiRect.size.width,
+                           emojiRect.size.height
+                           );
+    
+    if (newBox->containsPoint(p)) {
+      return true;
+    }
+    delete newBox;
+
+    return false;
+  };
+  
+  listener->onTouchEnded = [=](Touch *touch, Event* event) {
+    this->touchEvent(touch);
+  };
+  
+  Director::getInstance()->getEventDispatcher()
+    ->addEventListenerWithFixedPriority(listener, 30);
+}
+
+void TileSprite::touchEvent(Touch* touch) {
+  CCLOG("1: %f %f", this->boardPosition.x, this->boardPosition.y);
 }
 
 void TileSprite::updateLabel() {

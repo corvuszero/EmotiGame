@@ -23,10 +23,14 @@ class TileSprite : public cocos2d::Sprite {
 private:
   TileConfig* config;
   cocos2d::Label* emoji;
+  float row;
+  float column;
   
   void calculateValue();
-  void updateLabel();
   void initOptions();
+  void setEvents();
+  void touchEvent(cocos2d::Touch* touch);
+  void updateLabel();
 
 public:
   cocos2d::Vec2 boardPosition;
