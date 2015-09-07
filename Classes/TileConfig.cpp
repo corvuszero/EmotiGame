@@ -31,7 +31,7 @@ TileConfig* TileConfig::create(TileClass tileClass) {
       
     default:
       return new TileConfig(tileClass, TileState::COVERED);
-  }  
+  }
 }
 
 std::string TileConfig::getSymbol() {

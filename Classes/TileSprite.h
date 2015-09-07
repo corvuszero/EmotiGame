@@ -19,15 +19,12 @@ enum class TileValues {
   SCISSORS
 };
 
-class TileSprite : public cocos2d::Sprite {
+class TileSprite : public cocos2d::Label {
 private:
   TileConfig* config;
-  cocos2d::Label* emoji;
-  float row;
-  float column;
   
   void calculateValue();
-  void initOptions();
+  void initOptions(TileClass tileClass);
   void setEvents();
   void touchEvent(cocos2d::Touch* touch);
   void updateLabel();
@@ -39,16 +36,9 @@ public:
   
   ~TileSprite();
   TileSprite();
-  TileSprite(TileClass tileClass);
   
-  void setSymbol(std::string emoji);
   void setBoardPosition(float row, float column);
-  cocos2d::Vec2 getBoardPosition();
-  const cocos2d::Size& getContentSize();
-
-  static TileSprite* create();
   static TileSprite* create(TileClass tileClass);
-
 };
 
 #endif /* defined(__GoobGame__TileSprite__) */

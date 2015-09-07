@@ -12,31 +12,20 @@
 
 USING_NS_CC;
 
-TileSprite::TileSprite() : TileSprite(TileClass::BOARD) {
-}
-
+TileSprite::TileSprite() {}
 TileSprite::~TileSprite() {
   delete this->config;
 }
 
-TileSprite::TileSprite(TileClass tileClass) {
-  this->emoji = nullptr;
-  this->config = TileConfig::create(tileClass);
-  this->currentState = this->config->getState();
-}
-
-TileSprite* TileSprite::create() {
-  return TileSprite::create(TileClass::BOARD);
-}
-
 TileSprite* TileSprite::create(TileClass tileClass) {
-  TileSprite *pSprite = new TileSprite(tileClass);
+  TileSprite *pSprite = new TileSprite();
   
-  if (pSprite->init()) {
-    pSprite->autorelease();
-    pSprite->initOptions();
+  if (pSprite) {
+    pSprite->initOptions(tileClass);
     pSprite->setEvents();
-    
+
+    pSprite->autorelease();
+
     return pSprite;
   }
   
@@ -45,28 +34,22 @@ TileSprite* TileSprite::create(TileClass tileClass) {
   return NULL;
 }
 
-Vec2 TileSprite::getBoardPosition() {
-  return this->boardPosition;
-}
+void TileSprite::initOptions(TileClass tileClass) {
+  this->config = TileConfig::create(tileClass);
+  this->currentState = this->config->getState();
 
-const Size& TileSprite::getContentSize() {
-  return this->emoji->getContentSize();
-}
-
-void TileSprite::initOptions() {
-  this->updateLabel();
-  this->addChild(this->emoji, 0);
+  this->setSystemFontName("Arial");
+  this->setSystemFontSize(70);
+  this->setString(this->config->getSymbol());
   
+  this->setAnchorPoint(GraphicUtils::ALIGN_BOTTOM_LEFT);
   this->calculateValue();
 }
 
 void TileSprite::setBoardPosition(float row, float column) {
-  this->row = row;
-  this->column = column;
-  
   this->setPosition(Vec2(
-    this->emoji->getContentSize().width * this->column,
-    this->emoji->getContentSize().height * this->row
+    this->getContentSize().width * column,
+    this->getContentSize().height * row
   ));
   
   this->boardPosition = Vec2(column, row);
@@ -96,19 +79,9 @@ void TileSprite::setEvents() {
   listener->onTouchBegan = [&](Touch* touch, Event* event) {
     Vec2 p = touch->getLocation();
     
-    Rect emojiRect = this->emoji->getBoundingBox();
-    Rect box = this->getBoundingBox();
-    Rect* newBox = new Rect(
-                           box.origin.x,
-                           box.origin.y,
-                           emojiRect.size.width,
-                           emojiRect.size.height
-                           );
-    
-    if (newBox->containsPoint(p)) {
+    if (this->getBoundingBox().containsPoint(p)) {
       return true;
     }
-    delete newBox;
 
     return false;
   };
@@ -122,19 +95,5 @@ void TileSprite::setEvents() {
 }
 
 void TileSprite::touchEvent(Touch* touch) {
-  CCLOG("1: %f %f", this->boardPosition.x, this->boardPosition.y);
-}
-
-void TileSprite::updateLabel() {
-  if (this->emoji == nullptr) {
-    this->emoji = Label::createWithSystemFont(
-      this->config->getSymbol(),
-      "Arial",
-      70
-    );
-    this->emoji->setAnchorPoint(GraphicUtils::ALIGN_BOTTOM_LEFT);
-    return;
-  }
-  
-  this->emoji->setString(this->config->getSymbol());
+  CCLOG("Clicked [%f %f]", this->boardPosition.y, this->boardPosition.x);
 }
