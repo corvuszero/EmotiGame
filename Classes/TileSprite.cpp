@@ -77,8 +77,11 @@ void TileSprite::setEvents() {
   listener->setSwallowTouches(true);
   
   listener->onTouchBegan = [&](Touch* touch, Event* event) {
-    Vec2 p = touch->getLocation();
-    
+    if (this->getParent() == nullptr) {
+      return false;
+    }
+
+    Vec2 p = this->getParent()->convertToNodeSpace(touch->getLocation());
     if (this->getBoundingBox().containsPoint(p)) {
       return true;
     }
