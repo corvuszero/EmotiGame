@@ -173,6 +173,8 @@
 		DA7F6FFF1B77106D00534C66 /* GraphicUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicUtils.h; sourceTree = "<group>"; };
 		DA8E0FFB1B537B9900A4F28B /* TitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleScene.cpp; sourceTree = "<group>"; };
 		DA8E0FFC1B537B9900A4F28B /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScene.h; sourceTree = "<group>"; };
+		DACC0B9B1C1E65A10021EACF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		DACC0B9D1C1E65CA0021EACF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DAEBC4191B7F1840002C3905 /* TileConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileConfig.cpp; sourceTree = "<group>"; };
 		DAEBC41A1B7F1840002C3905 /* TileConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileConfig.h; sourceTree = "<group>"; };
 		DAEF1B4F1B6EDC06005EE564 /* BoardSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardSprite.cpp; sourceTree = "<group>"; };
@@ -272,6 +274,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DACC0B9D1C1E65CA0021EACF /* libsqlite3.tbd */,
+				DACC0B9B1C1E65A10021EACF /* libsqlite3.0.tbd */,
 				8262943D1AAF051F00CB7CF7 /* Security.framework */,
 				52B47A461A53D09B004E4C60 /* Security.framework */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
