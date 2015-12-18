@@ -46,7 +46,7 @@ void TileSprite::initOptions(TileClass tileClass) {
   this->calculateValue();
 }
 
-void TileSprite::setBoardPosition(float row, float column) {
+void TileSprite::setBoardPosition(int row, int column) {
   this->setPosition(Vec2(
     this->getContentSize().width * column,
     this->getContentSize().height * row
@@ -98,5 +98,9 @@ void TileSprite::setEvents() {
 }
 
 void TileSprite::touchEvent(Touch* touch) {
-  CCLOG("Clicked [%f %f]", this->boardPosition.y, this->boardPosition.x);
+  if (this->onTap == nullptr) {
+    return;
+  }
+  
+  this->onTap((int)this->boardPosition.y, (int)this->boardPosition.x);
 }

@@ -31,6 +31,7 @@ public:
   static BoardSprite* create(int sizeX, int sizeY);
   
   void initOptions();
+  void onTileTap(int y, int x);
 };
 
 #endif /* defined(__GoobGame__BoardSprite__) */

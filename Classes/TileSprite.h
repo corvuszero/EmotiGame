@@ -30,14 +30,17 @@ private:
   void updateLabel();
 
 public:
+  typedef std::function<void(int, int)> ggOnTileTapCallback;
+  
   cocos2d::Vec2 boardPosition;
+  ggOnTileTapCallback onTap;
   TileState currentState;
   TileValues value;
   
   ~TileSprite();
   TileSprite();
   
-  void setBoardPosition(float row, float column);
+  void setBoardPosition(int row, int column);
   static TileSprite* create(TileClass tileClass);
 };
 

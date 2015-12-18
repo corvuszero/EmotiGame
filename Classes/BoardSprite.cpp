@@ -64,7 +64,8 @@ void BoardSprite::initOptions() {
     float row = i / this->sizeX;
     float column = i % this->sizeX;
     
-    tile->setBoardPosition(row, column);
+    tile->setBoardPosition((int)row, (int)column);
+    tile->onTap = CC_CALLBACK_2(BoardSprite::onTileTap, this);
     
     this->board.pushBack(tile);
     this->addChild(tile);
@@ -75,4 +76,8 @@ void BoardSprite::initOptions() {
     sampleBoard->getContentSize().width * this->sizeX,
     sampleBoard->getContentSize().height * this->sizeY
   ));
+}
+
+void BoardSprite::onTileTap(int y, int x) {
+  CCLOG("BoardSprite On TileTap! [%i, %i]", y, x);
 }
